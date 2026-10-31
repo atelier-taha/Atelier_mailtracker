@@ -4,6 +4,7 @@
   "description": "Atelier's MailTracker — Mail Intelligence & Security Suite (RFC 5322 Forensics, Visual Hop Analysis, SPF/DKIM/DMARC Verifier, Spoof Detector, and Stealth Open/Click Tracking)",
   "main": "api/track.js",
   "scripts": {
+    "package": "node scripts/package-extension.js",
     "test": "node test/test-intelligence.js && node test/test-extension-routing.js && node test/test-server.js && node test/test-persistence.js && node test/test-compose-links.js && node test/test-notifications.js",
     "test:intelligence": "node test/test-intelligence.js",
     "test:routing": "node test/test-extension-routing.js",
