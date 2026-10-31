@@ -1,0 +1,127 @@
+/* ==========================================================================
+   Atelier's MailTracker — Gmail In-Page Integration Styles
+   ========================================================================== */
+
+/* Outbound Compose Toggle Button */
+.mailtracker-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  margin-left: 8px;
+  margin-right: 4px;
+  border-radius: 18px;
+  font-family: 'Google Sans', Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.mailtracker-btn.active {
+  background-color: #e6f4ea;
+  color: #137333;
+  border-color: #ceead6;
+}
+
+.mailtracker-btn.active:hover {
+  background-color: #ceead6;
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3);
+}
+
+.mailtracker-btn.active .mailtracker-icon {
+  stroke: #137333;
+}
+
+.mailtracker-btn.inactive {
+  background-color: #f1f3f4;
+  color: #5f6368;
+  border-color: #dadce0;
+}
+
+.mailtracker-btn.inactive:hover {
+  background-color: #e8eaed;
+  color: #202124;
+}
+
+.mailtracker-btn.inactive .mailtracker-icon {
+  stroke: #5f6368;
+}
+
+.mailtracker-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.mailtracker-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
+
+/* Outbound Compose Link Tracker Button */
+.mailtracker-links-btn.active {
+  background-color: #e8f0fe;
+  color: #1a73e8;
+  border-color: #d2e3fc;
+}
+
+.mailtracker-links-btn.active:hover {
+  background-color: #d2e3fc;
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3);
+}
+
+.mailtracker-links-btn.active .mailtracker-icon {
+  stroke: #1a73e8;
+}
+
+/* Inbound Intelligence Forensics Button in Gmail Action Toolbar */
+.atelier-intel-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  margin-left: 8px;
+  border-radius: 16px;
+  background-color: #0b111e;
+  color: #00e5ff;
+  border: 1px solid #1f2d47;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  vertical-align: middle;
+}
+
+.atelier-intel-btn:hover {
+  background-color: #111a2e;
+  border-color: #00e5ff;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+
+.atelier-intel-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Shadow DOM Host Root */
+#atelier-forensics-drawer-root {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100vh;
+  z-index: 999999;
+  pointer-events: none;
+}

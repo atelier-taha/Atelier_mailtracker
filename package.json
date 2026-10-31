@@ -1,0 +1,29 @@
+{
+  "name": "atelier-mailtracker",
+  "version": "2.0.0",
+  "description": "Atelier's MailTracker — Mail Intelligence & Security Suite (RFC 5322 Forensics, Visual Hop Analysis, SPF/DKIM/DMARC Verifier, Spoof Detector, and Stealth Open/Click Tracking)",
+  "main": "api/track.js",
+  "scripts": {
+    "test": "node test/test-intelligence.js && node test/test-extension-routing.js && node test/test-server.js && node test/test-persistence.js && node test/test-compose-links.js && node test/test-notifications.js",
+    "test:intelligence": "node test/test-intelligence.js",
+    "test:routing": "node test/test-extension-routing.js",
+    "test:server": "node test/test-server.js",
+    "test:persistence": "node test/test-persistence.js",
+    "test:links": "node test/test-compose-links.js",
+    "test:notifications": "node test/test-notifications.js"
+  },
+  "keywords": [
+    "mail-intelligence",
+    "email-forensics",
+    "spf",
+    "dkim",
+    "dmarc",
+    "email-tracker",
+    "pixel-tracker",
+    "gmail-extension",
+    "manifest-v3",
+    "vercel-serverless"
+  ],
+  "author": "AtelierForge Tools",
+  "license": "MIT"
+}

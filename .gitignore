@@ -1,0 +1,76 @@
+# ==============================================================================
+# DEPENDENCIES & RUNTIME CACHES
+# ==============================================================================
+node_modules/
+.pnp/
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ==============================================================================
+# SECRETS & ENVIRONMENT VARIABLES (CRITICAL)
+# ==============================================================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+*.env.*
+!.env.example
+
+# ==============================================================================
+# VERCEL SERVERLESS BUILD & DEPLOYMENT ARTIFACTS
+# ==============================================================================
+.vercel/
+.output/
+
+# ==============================================================================
+# TEST RUNNERS & COVERAGE
+# ==============================================================================
+coverage/
+.nyc_output/
+*.lcov
+
+# ==============================================================================
+# EXTENSION PACKAGING & DISTRIBUTION ARTIFACTS
+# ==============================================================================
+dist/
+build/
+release/
+*.zip
+*.crx
+*.pem
+
+# ==============================================================================
+# PROTOTYPING & SCRATCHPAD ASSETS
+# ==============================================================================
+*.tmp
+*.temp
+at_mailtracker_extension_sidebar.html
+at_mailtracker_manifest_v3_new_ui.html
+
+# ==============================================================================
+# OPERATING SYSTEM & IDE ARTIFACTS
+# ==============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# Editors
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo

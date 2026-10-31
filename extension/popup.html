@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AT-Mailtracker — Mail Intelligence & Security Suite</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="extension-container">
+    <div>
+      <!-- Main Brand Navigation Bar -->
+      <header class="app-header">
+        <div class="brand-group">
+          <div class="brand-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="brand-title-wrap">
+            <div class="brand-title-row">
+              <span class="brand-title">AT-Mailtracker</span>
+              <span class="pro-badge">PRO</span>
+            </div>
+            <span class="brand-sub">by <span>atelierforge</span></span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div id="status-indicator" class="status-pill connected" title="Engine Status">
+            <span class="dot"></span>
+            <span id="status-indicator-text">Connected</span>
+          </div>
+          <button id="btn-sync-status" class="icon-btn" title="Refresh Engine Connection">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+              <path d="M21 3v5h-5"/>
+              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+              <path d="M8 16H3v5"/>
+            </svg>
+          </button>
+          <button id="btn-open-settings" class="icon-btn" title="Engine & Webhook Settings">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Segmented Tab Navigation -->
+      <div class="nav-switcher-wrap">
+        <nav class="nav-switcher">
+          <button id="nav-btn-inbound" class="nav-tab-btn active">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>Mail Intelligence</span>
+          </button>
+          <button id="nav-btn-outbound" class="nav-tab-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="22" y1="12" x2="18" y2="12"/>
+              <line x1="6" y1="12" x2="2" y2="12"/>
+              <line x1="12" y1="6" x2="12" y2="2"/>
+              <line x1="12" y1="22" x2="12" y2="18"/>
+            </svg>
+            <span>Outbound Telemetry</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- ==========================================
+           TAB 1: MAIL INTELLIGENCE (INBOUND FORENSICS)
+           ========================================== -->
+      <section id="view-inbound" class="content-body">
+        
+        <!-- Primary Action Card: Inspect Active Gmail Email -->
+        <div class="card">
+          <div class="card-accent-top"></div>
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="card-title-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m22 2-7 20-4-9-9-4Z"/>
+                  <path d="M22 2 11 13"/>
+                </svg>
+              </div>
+              <span class="card-title">Live Gmail Thread Inspector</span>
+            </div>
+            <span id="tab-state-badge" class="badge-chip pass">Active Tab Synced</span>
+          </div>
+
+          <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4; margin-bottom: 12px;">
+            Fetch and audit authentic RFC 5322 MIME headers directly from the active email conversation inside Gmail.
+          </p>
+
+          <button id="btn-inspect-active-email" class="primary-btn">
+            <svg id="inspect-spinner" class="util-hidden" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="2" x2="12" y2="6"/>
+              <line x1="12" y1="18" x2="12" y2="22"/>
+              <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
+              <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+              <line x1="2" y1="12" x2="6" y2="12"/>
+              <line x1="18" y1="12" x2="22" y2="12"/>
+              <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
+              <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+            </svg>
+            <svg id="inspect-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <span id="inspect-btn-text">Inspect Active Gmail Email</span>
+          </button>
+
+          <!-- Fallback Accordion for Manual Input -->
+          <div style="margin-top: 12px; border-top: 1px dashed var(--border-subtle); padding-top: 8px;">
+            <button id="btn-toggle-manual-input" class="accordion-toggle">
+              <span>Or inspect custom raw headers manually</span>
+              <span id="manual-toggle-arrow">▾</span>
+            </button>
+
+            <div id="manual-input-drawer" class="util-hidden" style="margin-top: 8px;">
+              <textarea id="raw-headers-input" class="code-textarea" placeholder="Paste full RFC 5322 MIME headers here..."></textarea>
+              <div style="display: flex; gap: 6px; margin-top: 6px;">
+                <button id="btn-paste-headers" class="secondary-btn" style="flex: 1;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                  </svg>
+                  <span>Paste</span>
+                </button>
+                <button id="btn-clear-headers" class="secondary-btn">
+                  <span>Clear</span>
+                </button>
+                <button id="btn-parse-manual" class="secondary-btn" style="font-weight: 700; color: var(--brand-indigo);">
+                  <span>Analyze</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Forensic Results Display -->
+        <div id="forensic-idle-card" class="card" style="text-align: center; padding: 24px 14px; border-style: dashed;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; color: var(--text-light);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+          </div>
+          <div style="font-size: 11.5px; font-weight: 700; color: var(--text-main);">Awaiting Thread Inspection</div>
+          <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">
+            Click Inspect Active Gmail Email to run real-time spoof diagnostics.
+          </div>
+        </div>
+
+        <!-- Populated Results Card -->
+        <div id="forensic-result-card" class="card util-hidden">
+          <div class="card-header">
+            <span class="card-title">Forensic Audit Verdict</span>
+            <span id="verdict-badge" class="badge-chip pass">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span id="verdict-text">AUTHENTICATED</span>
+            </span>
+          </div>
+
+          <!-- Metadata List -->
+          <div class="meta-list">
+            <div class="meta-row">
+              <span class="meta-label">From:</span>
+              <span id="meta-from-val" class="meta-value">support@github.com</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Return-Path:</span>
+              <span id="meta-return-val" class="meta-value">support@github.com</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Subject:</span>
+              <span id="meta-subject-val" class="meta-value">[Security] Advisory Notice</span>
+            </div>
+          </div>
+
+          <!-- DNS Security Protocol Grid -->
+          <div class="auth-grid">
+            <div id="auth-spf-card" class="auth-card pass">
+              <div class="auth-title">SPF</div>
+              <div id="auth-spf-val" class="auth-val">PASS</div>
+              <div id="auth-spf-sub" class="auth-sub">IP Designated</div>
+            </div>
+            <div id="auth-dkim-card" class="auth-card pass">
+              <div class="auth-title">DKIM</div>
+              <div id="auth-dkim-val" class="auth-val">PASS</div>
+              <div id="auth-dkim-sub" class="auth-sub">Valid Sig</div>
+            </div>
+            <div id="auth-dmarc-card" class="auth-card pass">
+              <div class="auth-title">DMARC</div>
+              <div id="auth-dmarc-val" class="auth-val">PASS</div>
+              <div id="auth-dmarc-sub" class="auth-sub">Enforced</div>
+            </div>
+          </div>
+
+          <!-- Relay Path -->
+          <div style="margin-top: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+              <span style="font-size: 9.5px; font-weight: 700; color: var(--text-light); text-transform: uppercase;">Relay Hops Traversed</span>
+              <span id="relay-hops-count" style="font-size: 9px; font-family: var(--font-mono); color: var(--brand-cyan-dark); font-weight: 700;">0 nodes</span>
+            </div>
+            <div id="relay-hops-container">
+              <!-- Hop items injected here -->
+            </div>
+          </div>
+
+          <!-- Diagnostic Verdict Box -->
+          <div id="diagnostic-box" class="diag-box clean">
+            <svg id="diag-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 1px;">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+            <div>
+              <span id="diag-headline" class="diag-title">Zero Spoof Anomalies Detected</span>
+              <span id="diag-subline" class="diag-desc">Cryptographic DKIM key signatures match SPF designated routing servers.</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div style="display: flex; gap: 6px; margin-top: 10px; padding-top: 8px; border-top: 1px solid #f1f5f9;">
+            <button id="btn-copy-audit-report" class="secondary-btn" style="flex: 1; justify-content: center;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+              </svg>
+              <span>Copy Audit Log</span>
+            </button>
+            <button id="btn-export-forensic-json" class="secondary-btn">
+              <span>JSON</span>
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==========================================
+           TAB 2: OUTBOUND TELEMETRY (TRACKER & STREAM)
+           ========================================== -->
+      <section id="view-outbound" class="content-body util-hidden">
+        
+        <!-- Active Gmail Compose DOM Status & Injector -->
+        <div class="card">
+          <div class="card-accent-top"></div>
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="card-title-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"/>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+              </div>
+              <span class="card-title">Active Compose Draft</span>
+            </div>
+            <button id="btn-sync-compose-dom" class="secondary-btn" style="padding: 2px 6px; font-size: 9px;">
+              <span>Sync Draft</span>
+            </button>
+          </div>
+
+          <!-- Detected Draft Inputs -->
+          <div class="field-row">
+            <label class="field-label" for="compose-recipient-input">Recipient (To)</label>
+            <input id="compose-recipient-input" type="text" class="text-input" placeholder="recipient@company.com" />
+          </div>
+
+          <div class="field-row">
+            <label class="field-label" for="compose-subject-input">Subject Line</label>
+            <input id="compose-subject-input" type="text" class="text-input" placeholder="Draft Subject Line" />
+          </div>
+
+          <!-- Tracking Feature Modules -->
+          <div class="checkbox-group">
+            <label class="checkbox-chip">
+              <input id="chk-stealth-pixel" type="checkbox" checked />
+              <span>Pixel</span>
+            </label>
+            <label class="checkbox-chip">
+              <input id="chk-link-rewrite" type="checkbox" checked />
+              <span>Links</span>
+            </label>
+            <label class="checkbox-chip">
+              <input id="chk-geo-telemetry" type="checkbox" checked />
+              <span>Geo/OS</span>
+            </label>
+          </div>
+
+          <button id="btn-inject-outbound-tracker" class="primary-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            <span id="btn-inject-text">Inject Tracker into Active Draft</span>
+          </button>
+        </div>
+
+        <!-- Telemetry Metrics Scorecards -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-label">Tracked</div>
+            <div id="stat-tracked-count" class="stat-num">0</div>
+            <div class="stat-progress-bar">
+              <div class="stat-progress-fill" style="width: 100%;"></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Open Rate</div>
+            <div id="stat-open-rate" class="stat-num" style="color: var(--brand-cyan-dark);">0%</div>
+            <div class="stat-progress-bar">
+              <div id="stat-open-bar" class="stat-progress-fill" style="width: 0%; background: var(--brand-cyan);"></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Click Rate</div>
+            <div id="stat-click-rate" class="stat-num" style="color: var(--brand-indigo);">0%</div>
+            <div class="stat-progress-bar">
+              <div id="stat-click-bar" class="stat-progress-fill" style="width: 0%; background: var(--brand-indigo);"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outbound Telemetry Activity Feed -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <div style="width: 6px; height: 6px; border-radius: 50%; background: var(--status-emerald);"></div>
+              <span class="card-title">Live Telemetry Feed</span>
+            </div>
+            <button id="btn-simulate-open" class="secondary-btn" style="padding: 2px 7px; font-size: 9px; font-weight: 700; color: var(--brand-cyan-dark);">
+              <span>⚡ Test Read</span>
+            </button>
+          </div>
+
+          <!-- Feed Filters -->
+          <div class="filter-bar">
+            <div class="filter-tabs">
+              <button id="flt-all" class="filter-tab active">All</button>
+              <button id="flt-opened" class="filter-tab">Opened</button>
+              <button id="flt-clicked" class="filter-tab">Clicked</button>
+              <button id="flt-unopened" class="filter-tab">Pending</button>
+            </div>
+            <span id="feed-count-label" style="font-size: 9.5px; font-family: var(--font-mono); color: var(--text-light);">0 items</span>
+          </div>
+
+          <div id="outbound-feed-container" style="max-height: 250px; overflow-y: auto;">
+            <!-- Outbound feed items populated dynamically -->
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <!-- Minimal Extension Footer -->
+    <footer class="app-footer">
+      <div>
+        <span style="font-weight: 600; color: var(--text-muted);">AT-Mailtracker Manifest V3</span>
+      </div>
+      <div>
+        <span>atelierforge-tools // MAIL INTEL</span>
+      </div>
+    </footer>
+
+    <!-- Settings & Webhook Modal -->
+    <div id="modal-settings" class="modal-overlay">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <span class="modal-title">Engine Configuration</span>
+          <button id="btn-close-settings" class="icon-btn" title="Close Settings">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="field-row">
+          <label class="field-label" for="setting-endpoint-input">Status & Telemetry API Endpoint</label>
+          <input id="setting-endpoint-input" type="text" class="text-input" placeholder="https://your-tracker.vercel.app/api/track" />
+        </div>
+
+        <div class="field-row">
+          <label class="field-label" for="setting-webhook-input">Webhook Token / Secret (Optional)</label>
+          <input id="setting-webhook-input" type="password" class="text-input" placeholder="https://discord.com/api/webhooks/..." />
+        </div>
+
+        <div style="margin: 12px 0;">
+          <label class="checkbox-chip" style="width: 100%;">
+            <input id="setting-auto-inspect" type="checkbox" checked />
+            <span style="font-size: 10.5px;">Auto-inspect active Gmail thread on click</span>
+          </label>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-top: 16px;">
+          <button id="btn-save-settings" class="primary-btn" style="flex: 1;">Save Settings</button>
+          <button id="btn-test-endpoint" class="secondary-btn">Test Ping</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ephemeral Toast Notification -->
+    <div id="toast-banner" class="toast-pill">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+      <span id="toast-message">Notification</span>
+    </div>
+
+  </div>
+
+  <!-- Core Forensics & Notification Libraries -->
+  <script src="lib/header-parser.js"></script>
+  <script src="lib/auth-verifier.js"></script>
+  <script src="lib/spoof-detector.js"></script>
+  <script src="lib/forensic-exporter.js"></script>
+  <script src="lib/notification-engine.js"></script>
+  <!-- UI Controller -->
+  <script src="popup.js"></script>
+</body>
+</html>

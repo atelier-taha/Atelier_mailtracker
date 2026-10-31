@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/api/track",
+      "dest": "/api/track.js",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+      }
+    },
+    {
+      "src": "/api/click",
+      "dest": "/api/click.js",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0"
+      }
+    },
+    {
+      "src": "/api/status",
+      "dest": "/api/status.js",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0"
+      }
+    }
+  ]
+}
